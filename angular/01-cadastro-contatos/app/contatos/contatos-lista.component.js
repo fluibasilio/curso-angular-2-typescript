@@ -11,11 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 const contato_service_1 = require("./contato.service");
 let ContatosListaComponent = class ContatosListaComponent {
+    // injeção de dependencias sempre pelo construtor
     constructor(contatoService) {
         this.contatoService = contatoService;
     }
     ngOnInit() {
-        this.contatos = this.contatoService.getContatos();
+        this.contatoService.getContatos()
+            .then((contatos) => {
+            this.contatos = contatos;
+        }).catch(err => console.log(err));
     }
 };
 ContatosListaComponent = __decorate([
