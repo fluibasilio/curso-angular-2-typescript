@@ -17,10 +17,15 @@ let ContatoService = class ContatoService {
         this.contatosUrl = "app/contatos";
     }
     getContatos() {
+        // return Promise.resolve(CONTATOS);
         return this.http.get(this.contatosUrl)
             .toPromise()
-            .then(response => response.json().data);
-        // return Promise.resolve(CONTATOS);
+            .then(response => response.json().data)
+            .catch(this.handleError);
+    }
+    handleError(err) {
+        console.log('ContatoService handleError:', err);
+        return Promise.reject(err.message || err);
     }
     getContato(id) {
         return this.getContatos()

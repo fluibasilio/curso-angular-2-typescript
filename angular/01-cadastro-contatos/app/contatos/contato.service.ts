@@ -14,10 +14,16 @@ export class ContatoService {
     ){}
 
     getContatos(): Promise<Contato[]> {
+        // return Promise.resolve(CONTATOS);
         return this.http.get(this.contatosUrl)
             .toPromise()
             .then( response => response.json().data as Contato[] )
-        // return Promise.resolve(CONTATOS);
+            .catch(this.handleError);
+    }
+
+    private handleError(err: any): Promise<any>{
+        console.log('ContatoService handleError:', err);
+        return Promise.reject( err.message || err );
     }
 
     getContato(id: number): Promise<Contato> {
