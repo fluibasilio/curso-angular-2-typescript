@@ -11,6 +11,10 @@ let ContatoService = class ContatoService {
     getContatos() {
         return Promise.resolve(contatos_mock_1.CONTATOS);
     }
+    getContato(id) {
+        return this.getContatos()
+            .then((contatos) => contatos.find(contato => contato.id === id));
+    }
     getContatosSlowly() {
         return new Promise((resolve, reject) => {
             setTimeout(resolve, 2000);
