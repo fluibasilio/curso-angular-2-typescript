@@ -22,6 +22,7 @@ import { ContatoService } from "./contato.service";
 export class ContatoDetalheComponent implements OnInit {
     
     contato: Contato;
+    private isNew: boolean = true
 
     constructor (
         private ContatoService: ContatoService,
@@ -32,21 +33,23 @@ export class ContatoDetalheComponent implements OnInit {
     ngOnInit(): void{
         this.contato = new Contato(0, '', '', '');
         
-        console.log("on init inicializado");
+        // console.log("on init inicializado");
 
         this.route.params.forEach(( params: Params ) => {
             
             let id: number = +params['id'];
             
-            console.log("ID: ", id);
+            // console.log("ID: ", id);
 
             if (id){
-
+                
+                this.isNew = false;
+                
                 this.ContatoService.getContato(id)
                 .then((contato: Contato) => {
                     
                     this.contato = contato;
-                    console.log("Contato > ", contato);
+                    // console.log("Contato > ", contato);
                 
                 });
 
@@ -72,8 +75,21 @@ export class ContatoDetalheComponent implements OnInit {
         };
     }
 
-    teste(): void{
-        console.log('this.contato', this.contato);
+    onSubmit():void{
+
+        // console.log('submit', this.contato);
+        // console.log('novo: ', this.isNew );
+        
+        if (this.isNew) {
+            console.log('cadastrar novo contato');
+        }else{
+            console.log('alterar contato existente')
+        }
+        
     }
+
+    // teste(): void{
+    //     console.log('this.contato', this.contato);
+    // }
 
 }
