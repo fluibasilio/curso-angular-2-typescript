@@ -24,15 +24,31 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         console.log("on init inicializado");
         this.route.params.forEach((params) => {
             let id = +params['id'];
-            console.log(id);
-            this.ContatoService.getContato(id)
-                .then((contato) => {
-                this.contato = contato;
-                console.log("Contato", contato);
-            });
+            console.log("ID: ", id);
+            if (id) {
+                this.ContatoService.getContato(id)
+                    .then((contato) => {
+                    this.contato = contato;
+                    console.log("Contato > ", contato);
+                });
+            }
         });
     }
     ;
+    getFormGroupClass(isValid, isPristine) {
+        return {
+            'form-group': true,
+            'has-danger': !isValid && !isPristine,
+            'has-success': isValid && !isPristine
+        };
+    }
+    getFormControlClass(isValid, isPristine) {
+        return {
+            'form-control': true,
+            'form-control-danger': !isValid && !isPristine,
+            'form-control-success': isValid && !isPristine
+        };
+    }
     teste() {
         console.log('this.contato', this.contato);
     }
@@ -41,7 +57,15 @@ ContatoDetalheComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'contato-detalhe',
-        templateUrl: 'contato-detalhe.component.html'
+        templateUrl: 'contato-detalhe.component.html',
+        styles: [`
+        /*
+        .ng-valid[required]{
+            border: 1px solid lime;
+        }
+        */  
+    `],
+        styleUrls: ['contato-detalhe.component.css']
     }),
     __metadata("design:paramtypes", [contato_service_1.ContatoService,
         router_1.ActivatedRoute,

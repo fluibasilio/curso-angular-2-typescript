@@ -8,7 +8,15 @@ import { ContatoService } from "./contato.service";
 @Component({
     moduleId: module.id,
     selector: 'contato-detalhe',
-    templateUrl: 'contato-detalhe.component.html'
+    templateUrl: 'contato-detalhe.component.html',
+    styles: [`
+        /*
+        .ng-valid[required]{
+            border: 1px solid lime;
+        }
+        */  
+    `],
+    styleUrls: ['contato-detalhe.component.css']
 })
 
 export class ContatoDetalheComponent implements OnInit {
@@ -30,17 +38,39 @@ export class ContatoDetalheComponent implements OnInit {
             
             let id: number = +params['id'];
             
-            console.log(id);
-            this.ContatoService.getContato(id)
-                .then((contato: Contato) =>{
-                    this.contato = contato;
-                    console.log("Contato", contato);
+            console.log("ID: ", id);
 
+            if (id){
+
+                this.ContatoService.getContato(id)
+                .then((contato: Contato) => {
+                    
+                    this.contato = contato;
+                    console.log("Contato > ", contato);
+                
                 });
+
+            }
 
         }); 
         
     };
+
+    getFormGroupClass(isValid: boolean, isPristine: boolean ): {}{
+        return {
+            'form-group': true,
+            'has-danger': !isValid && !isPristine,
+            'has-success': isValid && !isPristine
+        };
+    }
+
+    getFormControlClass(isValid: boolean, isPristine: boolean ): {}{
+        return {
+            'form-control': true,
+            'form-control-danger': !isValid && !isPristine,
+            'form-control-success': isValid && !isPristine
+        };
+    }
 
     teste(): void{
         console.log('this.contato', this.contato);
