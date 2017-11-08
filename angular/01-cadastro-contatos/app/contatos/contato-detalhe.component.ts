@@ -96,6 +96,10 @@ export class ContatoDetalheComponent implements OnInit {
         promise.then( contato => this.location.back() );
     }
 
+    goBack(): void {
+        this.location.back();
+    }
+
     // teste(): void{
     //     console.log('this.contato', this.contato);
     // }

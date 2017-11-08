@@ -65,6 +65,9 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         }
         promise.then(contato => this.location.back());
     }
+    goBack() {
+        this.location.back();
+    }
 };
 ContatoDetalheComponent = __decorate([
     core_1.Component({
