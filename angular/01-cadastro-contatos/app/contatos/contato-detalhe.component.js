@@ -14,21 +14,21 @@ const common_1 = require("@angular/common");
 const contato_model_1 = require("./contato.model");
 const contato_service_1 = require("./contato.service");
 let ContatoDetalheComponent = class ContatoDetalheComponent {
-    constructor(ContatoService, route, location) {
-        this.ContatoService = ContatoService;
+    constructor(contatoService, route, location) {
+        this.contatoService = contatoService;
         this.route = route;
         this.location = location;
         this.isNew = true;
     }
     ngOnInit() {
-        this.contato = new contato_model_1.Contato(0, '', '', '');
+        this.contato = new contato_model_1.Contato('', '', '');
         // console.log("on init inicializado");
         this.route.params.forEach((params) => {
             let id = +params['id'];
             // console.log("ID: ", id);
             if (id) {
                 this.isNew = false;
-                this.ContatoService.getContato(id)
+                this.contatoService.getContato(id)
                     .then((contato) => {
                     this.contato = contato;
                     // console.log("Contato > ", contato);
@@ -54,12 +54,16 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
     onSubmit() {
         // console.log('submit', this.contato);
         // console.log('novo: ', this.isNew );
+        let promise;
         if (this.isNew) {
             console.log('cadastrar novo contato');
+            promise = this.contatoService.create(this.contato);
         }
         else {
             console.log('alterar contato existente');
+            promise = this.contatoService.update(this.contato);
         }
+        promise.then(contato => this.location.back());
     }
 };
 ContatoDetalheComponent = __decorate([
