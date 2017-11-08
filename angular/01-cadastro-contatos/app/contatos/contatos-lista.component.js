@@ -22,7 +22,11 @@ let ContatosListaComponent = class ContatosListaComponent {
             .then((contatos) => {
             this.contatos = contatos;
         }).catch(err => {
-            console.log('ContatosListaComponent: ', err);
+            console.log(err);
+            this.mostrarMensagem({
+                tipo: 'danger',
+                texto: 'Ocorreu um erro ao carregar a lista de contatos!'
+            });
         });
     }
     onDelete(contato) {
@@ -33,15 +37,50 @@ let ContatosListaComponent = class ContatosListaComponent {
                     .delete(contato)
                     .then(() => {
                     this.contatos = this.contatos.filter((c) => c.id != contato.id);
+                    this.mostrarMensagem({
+                        tipo: 'success',
+                        texto: 'Contato deletado!'
+                    });
                 }).catch(err => {
+                    this.mostrarMensagem({
+                        tipo: 'danger',
+                        texto: 'Ocorreu um erro ao deletar contato!'
+                    });
                     console.log(err);
                 });
             }
         })
             .catch(err => {
+            this.mostrarMensagem({
+                tipo: 'danger',
+                texto: 'Ocorreu um erro ao deletar contato!'
+            });
             console.log(err);
         });
         console.log('deletar', contato);
+    }
+    mostrarMensagem(mensagem) {
+        this.mensagem = mensagem;
+        this.montarClasses(mensagem.tipo);
+        if (mensagem.tipo != 'danger') {
+            setTimeout(() => {
+                this.mensagem = undefined;
+            }, 3000);
+        }
+    }
+    montarClasses(tipo) {
+        this.classesCss = {
+            'alert': true
+        };
+        this.classesCss['alert-' + tipo] = true;
+        /*
+        {
+            'alert': true,
+            'alert-success': true,
+            'alert-danger': true
+            ...
+        }
+        */
     }
 };
 ContatosListaComponent = __decorate([
