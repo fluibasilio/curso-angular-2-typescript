@@ -24,7 +24,7 @@
                         <td>{{ c.nome }}</td>
                         <td><a href="mailto:{{ c.email }}">{{ c.email }}</a></td>
                         <td>{{ c.telefone }}</td>
-                        <td><button class="btn btn-danger" value="{{ c.id }}">Deletar</button></td>
+                        <td><button class="btn btn-danger" (click)="onDelete(c); $event.stopPropagation()">Deletar {{ c.id }}</button></td>
                     </tr>
                 </tbody>
 

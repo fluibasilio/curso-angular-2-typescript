@@ -47,7 +47,18 @@ let ContatoService = class ContatoService {
         return this.http
             .put(url, JSON.stringify(contato), { headers: this.headers })
             .toPromise()
-            .then((response) => {
+            .then(() => {
+            console.log(contato);
+            return contato;
+        })
+            .catch(this.handleError);
+    }
+    delete(contato) {
+        const url = `${this.contatosUrl}/${contato.id}`; // app/contatos/:id
+        return this.http
+            .delete(url, { headers: this.headers })
+            .toPromise()
+            .then(() => {
             console.log(contato);
             return contato;
         })

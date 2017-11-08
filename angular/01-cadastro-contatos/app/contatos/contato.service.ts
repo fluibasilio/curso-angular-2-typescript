@@ -53,8 +53,22 @@ export class ContatoService {
             .put( url, JSON.stringify(contato), { headers: this.headers } )
             .toPromise()
             // forma simplificada removendo console.log
-            // .then((response: Response) => contato as Contato )
-            .then((response: Response) => {
+            // .then(() => contato as Contato )
+            .then(() => {
+                console.log(contato);
+                return contato as Contato;
+            })
+            .catch( this.handleError )
+    }
+
+    delete(contato: Contato): Promise<Contato>{
+        const url = `${this.contatosUrl}/${contato.id}`; // app/contatos/:id
+        return this.http
+            .delete( url, { headers: this.headers } )
+            .toPromise()
+            // forma simplificada removendo console.log
+            // .then(() => contato as Contato )
+            .then(() => {
                 console.log(contato);
                 return contato as Contato;
             })

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { Contato } from "./contato.model";
 import { ContatoService } from "./contato.service";
+import { DialogService } from "./../dialog.service";
 
 @Component({
     moduleId: module.id,
@@ -14,7 +15,10 @@ export class ContatosListaComponent implements OnInit {
     contatos: Contato[];
     
     // injeção de dependencias sempre pelo construtor
-    constructor( private contatoService: ContatoService ) {}
+    constructor( 
+        private contatoService: ContatoService, 
+        private dialogService: DialogService
+    ) {}
 
     ngOnInit(): void {
         this.contatoService.getContatos()
@@ -23,6 +27,28 @@ export class ContatosListaComponent implements OnInit {
             }).catch(err => {
                 console.log('ContatosListaComponent: ', err);
             });
+    }
+
+    onDelete(contato: Contato): void{
+        this.dialogService.confirm('Deseja deletar o contato ' + contato.nome + '?')
+            .then( (canDelete: boolean) => {
+                if(canDelete){
+                    
+                    this.contatoService
+                        .delete(contato)
+                        .then(() => {
+                            this.contatos = this.contatos.filter( (c: Contato) => c.id != contato.id);
+                        }).catch(err => {
+                            console.log(err);
+                        })
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        console.log('deletar', contato);
+        
     }
 
 }
