@@ -94,6 +94,11 @@ let ContatoService = class ContatoService {
         // jeito diferente de implementar que funciona (sem o return)
         // }).then(() => this.getContatos() );
     }
+    searchContato(term) {
+        return this.http
+            .get(`${this.contatosUrl}/?nome=${term}`)
+            .map((res) => res.json().data);
+    }
 };
 ContatoService = __decorate([
     core_1.Injectable(),
