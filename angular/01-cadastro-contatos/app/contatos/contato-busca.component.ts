@@ -28,6 +28,9 @@ export class ContatoBuscaComponent implements OnInit {
             .switchMap( term => {
                 console.log("buscou: ", term);
                 return term ? this.contatoService.searchContato(term) : Observable.of<Contato[]>([]);
+            }).catch(err => {
+                console.log(err);
+                return Observable<Contato[]>[()];
             });
         
         this.contatos

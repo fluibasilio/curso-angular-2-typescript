@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 const Observable_1 = require("rxjs/Observable");
 const Subject_1 = require("rxjs/Subject");
+const contato_model_1 = require("./contato.model");
 const contato_service_1 = require("./contato.service");
 let ContatoBuscaComponent = class ContatoBuscaComponent {
     constructor(contatoService) {
@@ -24,6 +25,9 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
             .switchMap(term => {
             console.log("buscou: ", term);
             return term ? this.contatoService.searchContato(term) : Observable_1.Observable.of([]);
+        }).catch(err => {
+            console.log(err);
+            return Observable_1.Observable < contato_model_1.Contato[] > [()];
         });
         this.contatos
             .subscribe((contatos) => {
