@@ -37,6 +37,11 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
         //     console.dir(contatos);
         // });
     }
+    ngOnChanges(changes) {
+        let busca = changes['busca'];
+        console.log(changes);
+        this.search(busca.currentValue);
+    }
     search(termo) {
         // console.log('metodo search > ', termo)
         this.termosDaBusca.next(termo);
@@ -46,13 +51,17 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
         this.router.navigate(link);
     }
 };
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ContatoBuscaComponent.prototype, "busca", void 0);
 ContatoBuscaComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'contato-busca',
         templateUrl: 'contato-busca.component.html',
         styles: [`
-        .cursor-pointer{
+        .cursor-pointer:hover {
             cursor: pointer;
         }
     `]
