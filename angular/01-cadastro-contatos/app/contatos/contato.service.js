@@ -17,7 +17,7 @@ let ContatoService = class ContatoService {
         this.contatosUrl = 'app/contatos';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
-    getContatos() {
+    findAll() {
         // return Promise.resolve(CONTATOS);
         return this.http.get(this.contatosUrl)
             .toPromise()
@@ -28,8 +28,8 @@ let ContatoService = class ContatoService {
         console.log('ContatoService handleError:', err);
         return Promise.reject(err.message || err);
     }
-    getContato(id) {
-        return this.getContatos()
+    find(id) {
+        return this.findAll()
             .then((contatos) => contatos.find(contato => contato.id === id));
     }
     create(contato) {
@@ -89,10 +89,10 @@ let ContatoService = class ContatoService {
         }).then((p) => {
             console.log("agora vai");
             console.log("p > ", p);
-            return this.getContatos();
+            return this.findAll();
         });
         // jeito diferente de implementar que funciona (sem o return)
-        // }).then(() => this.getContatos() );
+        // }).then(() => this.findAll() );
     }
     searchContato(term) {
         return this.http
