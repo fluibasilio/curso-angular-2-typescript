@@ -7,6 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 const core_1 = require("@angular/core");
 let AppComponent = class AppComponent {
+    log(param) {
+        console.log("AppComponent log > ", param);
+    }
 };
 AppComponent = __decorate([
     core_1.Component({
