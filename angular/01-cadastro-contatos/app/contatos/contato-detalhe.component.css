@@ -1,0 +1,6 @@
+.ng-valid[required]{
+    color: green;
+}
+.ng-invalid[required]{
+    color: red;
+}
