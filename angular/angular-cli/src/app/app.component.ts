@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Algular CLI';
+  title = 'Fernando Luigi Basilio';
+  marcas: string[] = [ 'nike', 'adidas', 'rebook' ];
+
+  search(term?:string): string[]{
+    if(!term) return this.marcas;
+    return this.marcas.filter(marca => marca.indexOf(term) > -1);
+  }
+
 }
