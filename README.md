@@ -8,9 +8,12 @@
   - Bootstrap
 
 ### Versão
-  - 1.0.0 (11/11/2017)
+  - 1.1.0 (12/11/2017)
 
 ### Release notes   
 
-  - **1.0.0**
+  - **1.1.0**
+    - Finalização do Curso de Angular2 + CLI
+  
+  - 1.0.0
     - Finalização do Curso de Angular2 + Typescript
