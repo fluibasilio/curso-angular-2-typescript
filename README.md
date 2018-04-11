@@ -13,7 +13,7 @@
 
 ### Release notes   
 
-  - **2.0.0**
+  - **2.0.0 - upgrade-angular**
     - Atualizando versão do Angular 5 (01-cadastro-contatos)
 
   - 1.1.0
