@@ -7,12 +7,16 @@
   - Angular 2
   - Bootstrap
 
+    
 ### Versão
-  - 1.1.0 (12/11/2017)
+  - 2.0.0 (06/04/2018)
 
 ### Release notes   
 
-  - **1.1.0**
+  - **2.0.0**
+    - Atualizando versão do Angular 5 (01-cadastro-contatos)
+
+  - 1.1.0
     - Finalização do Curso de Angular2 + CLI
   
   - 1.0.0
