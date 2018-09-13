@@ -14,7 +14,7 @@
 ### Release notes   
 
   - **2.0.0 - upgrade-angular**
-    - Atualizando versão do Angular 5 (01-cadastro-contatos)
+    - Atualizando versão do Angular 6.0 (01-cadastro-contatos)
 
   - 1.1.0
     - Finalização do Curso de Angular2 + CLI
